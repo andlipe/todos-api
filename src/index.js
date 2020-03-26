@@ -5,7 +5,6 @@ require('dotenv').config()
 const connection = require('./database')
 let port = process.env.PORT || 3545
 
-
 console.log(process.env.MONGO_HOST)
 
 

@@ -3,7 +3,9 @@ const Todo = require('../models/Todo')
 module.exports = {
     async index(request, response) {
         const todos = await Todo.find()
-    
+        .skip(2)
+        .limit(2)
+        .sort('-createdAt')
         return response.json(todos)
     },
 

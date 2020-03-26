@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  api:
+    build: ./
+    restart: unless-stopped
+    command: "npm run dev"
+    volumes:
+      - ./src/:/app/src/
+      - ./.env:/app/.env
+    ports:
+      - $PORTA:$PORTA
+    environment: 
+      - PORTA="$PORTA"
+    links:
+      - mongo
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:4
+    restart: unless-stopped
+    volumes:
+      - ./mongo-data:/data/db
