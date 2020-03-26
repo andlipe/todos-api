@@ -10,8 +10,6 @@ services:
       - ./.env:/app/.env
     ports:
       - $PORTA:$PORTA
-    environment: 
-      - PORTA="$PORTA"
     links:
       - mongo
     depends_on:
@@ -20,5 +18,8 @@ services:
   mongo:
     image: mongo:4
     restart: unless-stopped
-    volumes:
-      - ./mongo-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "$MONGO_USER"
+      MONGO_INITDB_ROOT_PASSWORD: "$MONGO_PASS"
+    # volumes:
+    #   - ./mongo-data:/data/db
