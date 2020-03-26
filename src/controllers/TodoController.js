@@ -23,15 +23,29 @@ module.exports = {
     },
 
     async delete(request, response) {
-        await Todo.deleteOne({ _id: request.params }, (err) => {
+        let { _id } = request.params;
+        await Todo.deleteOne({ _id }, (err) => {
             if(!err){
-                response.json({ "exclude" : "yes" })
+                response.json({ })
             }
             else {
                 return err
             }
         })
 
-    }
+    },
 
-}
+    async modify(request, response) {
+            let updateObject = request.body;
+            let { _id } = request.params;
+            await Todo.updateOne({ _id }, {$set: updateObject});
+            return response.json({})
+        },
+
+    async update(request, response) {
+        await Todo.findOneAndUpdate(request.params, request.body, { new: true }, (err, todo) => {
+            if (err) return response.status(404).send(err);
+            return response.send(todo);
+        })
+    }    
+    }
