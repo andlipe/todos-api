@@ -20,7 +20,9 @@ module.exports = {
             completed, 
             createdAt, 
             updatedAt,
-        })
+        },(err) => {
+            if(err) return response.status(400).send(err);  
+          } )
        return response.json(todo)
     },
 
@@ -31,7 +33,7 @@ module.exports = {
                 response.json({ })
             }
             else {
-                return err
+                return response.status(404).send(err)
             }
         })
 
@@ -40,8 +42,11 @@ module.exports = {
     async modify(request, response) {
             let updateObject = request.body;
             let { _id } = request.params;
-            await Todo.updateOne({ _id }, {$set: updateObject});
+            await Todo.updateOne({ _id }, {$set: updateObject}, (err) => {
+              if(err) return response.status(404).send(err);  
+            });
             return response.json({})
+            
         },
 
     async update(request, response) {
