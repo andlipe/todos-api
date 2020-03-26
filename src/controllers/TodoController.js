@@ -1,7 +1,7 @@
 const Todo = require('../models/Todo')
 
 module.exports = {
-    async index(require, response) {
+    async index(request, response) {
         const todos = await Todo.find()
     
         return response.json(todos)
@@ -20,5 +20,18 @@ module.exports = {
             updatedAt,
         })
        return response.json(todo)
+    },
+
+    async delete(request, response) {
+        await Todo.deleteOne({ _id: request.params }, (err) => {
+            if(!err){
+                response.json({ "exclude" : "yes" })
+            }
+            else {
+                return err
+            }
+        })
+
     }
+
 }
