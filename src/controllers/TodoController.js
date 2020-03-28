@@ -9,6 +9,14 @@ module.exports = {
         return response.json(todos)
     },
 
+
+    async filter(request, response){
+        _id = request.params;
+        const todos = await Todo.findById(_id)
+        
+        return response.json(todos)
+    },    
+
     async store(request, response){
         let { description } = request.body;
         let completed = false;
@@ -29,12 +37,10 @@ module.exports = {
     async delete(request, response) {
         let { _id } = request.params;
         await Todo.deleteOne({ _id }, (err) => {
-            if(!err){
-                response.json({ })
-            }
-            else {
+            if(err) {
                 return response.status(404).send(err)
             }
+            return response.status(204).send({})
         })
 
     },
@@ -45,14 +51,15 @@ module.exports = {
             await Todo.updateOne({ _id }, {$set: updateObject}, (err) => {
               if(err) return response.status(404).send(err);  
             });
-            return response.json({})
-            
+            return response.status(204).send({})
         },
 
     async update(request, response) {
         await Todo.findOneAndUpdate(request.params, request.body, { new: true }, (err, todo) => {
-            if (err) return response.status(404).send(err);
-            return response.send(todo);
+            if (err) {
+                return response.status(404).send(err);
+            }
+            return response.status(204).send({})
         })
     }    
     }
