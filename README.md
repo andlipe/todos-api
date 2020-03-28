@@ -43,9 +43,9 @@ Deletar uma tarefa por Id - DELETE: http://localhost:3000/todos/_id
 
 Altera um item de uma tarefa por id - PATCH: http://localhost:3000/todos/_id 
 
-. Altera na tarefa o campo enviado pelo body da requisição, utilizando o método PATCH.
+. Altera na tarefa o campo enviado pelo corpo da requisição, utilizando o método PATCH.
 
 Altera a tarefa por completo através do id- PUT: http://localhost:3000/todos/_id 
 
-. Altera o recurso completo 
+. Altera o recurso completo da tarefa, utilizando o método PUT.
 
