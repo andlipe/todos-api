@@ -5,14 +5,12 @@ const { celebrate, Segments, Joi } = require('celebrate')
 const Todo = require('./models/Todo')
 
 
-routes.get('/todos', TodoController.index)
-
-routes.get('/todos/:_id',celebrate({
-    /* Validação feita pelo celebrate, para verificar se o id foi enviado na requisição */
-    [Segments.PARAMS]: Joi.object().keys({
-        _id: Joi.string().required(),
+routes.get('/todos', celebrate({
+    /* Validação feita pelo celebrate, para verificar se a query enviada é a "page" no formato number */
+    [Segments.QUERY]: Joi.object().keys({
+             page: Joi.number()
     })
-}), TodoController.filter)
+}), TodoController.index)
 
 routes.post('/todos',celebrate({
     /* Validação feita pelo celebrate, para verificar se foram enviados os campos necessário no body */
