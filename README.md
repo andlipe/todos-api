@@ -5,8 +5,9 @@ uma lista de tarefas.
 
 ## Tecnologias Utilizadas
 
-* Node.JS: Por estar mais familiarizado com JavaScript, escolhi node por poder trabalhar com uma tecnologia que estou acostumado, além de ser uma tecnologia otimizada para a criação de apis, trazendo velocidade para o projeto. 
-* MongoDB: Escolhido por ser trabalhar muito bem junto ao Node.JS e por ser bom para aplicações sem muitos relacionamentos entre tabelas.
+* Node.JS: Por estar mais familiarizado com JavaScript, escolhi node por poder trabalhar com uma tecnologia que estou acostumado, além de ser uma tecnologia otimizada para a criação de apis já que possui flexibilidade pela quantidade de pacotes que podem ser utilizados e leveza por não exigir muitos recursos.
+* MongoDB: Escolhido por trabalhar bem junto ao Node.JS pelos dados poderem ser salvos em JSON e por ser bom para aplicações sem muitos relacionamentos entre tabelas.
+
 
 # Como utilizar a ferramenta
 
@@ -29,23 +30,23 @@ Agora para subir o container vamos rodar o comando
 Pronto o ambiente vai estar disponível na porta 3000 por padrão ou na porta setada no .env
 # Como testar?
 
-Listagem de tarefas - GET: http://localhost:3000/todos/
+* Listagem de tarefas - GET: http://localhost:3000/todos/
 
-. Em caso de sucesso retorna todas tarefas já cadastradas no banco de dados, cada tarefa no formato JSON, contendo descrição, se foi concluida, a data de criação e a data de atualização.
+ Em caso de sucesso retorna todas tarefas já cadastradas no banco de dados, cada tarefa no formato JSON, contendo descrição, se foi concluida, a data de criação e a data de atualização.
 
-Adicionar tarefas - POST: http://localhost:3000/todos/
+* Adicionar tarefas - POST: http://localhost:3000/todos/
 
-. Adiciona uma tarefa ao banco de dados, sendo necessário inserir apenas o description. O Id é gerado automaticamente, o completed é adicionado por padrão false, createdAt e updatedAt são adicionado automaticamente pelo banco de dados.
+ Adiciona uma tarefa ao banco de dados, sendo necessário inserir apenas o description. O Id é gerado automaticamente, o completed é adicionado por padrão false, createdAt e updatedAt são adicionado automaticamente pelo banco de dados.
 
-Deletar uma tarefa por Id - DELETE: http://localhost:3000/todos/_id
+* Deletar uma tarefa por Id - DELETE: http://localhost:3000/todos/_id
 
-. Remove a tarefa utilizando o Id que foi gerado automaticamente, utilizando o método DELETE.
+ Remove a tarefa utilizando o Id que foi gerado automaticamente, utilizando o método DELETE.
 
-Altera um item de uma tarefa por id - PATCH: http://localhost:3000/todos/_id 
+* Altera um item de uma tarefa por id - PATCH: http://localhost:3000/todos/_id 
 
-. Altera na tarefa o campo enviado pelo corpo da requisição, utilizando o método PATCH.
+ Altera na tarefa o campo enviado pelo corpo da requisição, utilizando o método PATCH.
 
-Altera a tarefa por completo através do id- PUT: http://localhost:3000/todos/_id 
+* Altera a tarefa por completo através do id- PUT: http://localhost:3000/todos/_id 
 
-. Altera o recurso completo da tarefa, utilizando o método PUT.
+ Altera o recurso completo da tarefa, utilizando o método PUT.
 

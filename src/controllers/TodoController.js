@@ -9,15 +9,18 @@ module.exports = {
 
 
     async filter(request, response){
-        _id = request.params;
-        const todos = await Todo.findById(_id)
-        
-        return response.json(todos)
-    },    
+        let _id = request.params;
+        const todos = await Todo.findById(_id, (err) => {
+            if(err) {
+                return response.status(404).send(err)
+            }
+        })
+        return response.status(200).send({todos})
+        },    
 
     async store(request, response){
-        let { description } = request.body;
-        let completed = false;
+        let { description, completed } = request.body;
+        
     
         let { createdAt, updatedAt } = Date.now()
     
@@ -29,7 +32,7 @@ module.exports = {
         },(err) => {
             if(err) return response.status(400).send(err);  
           } )
-       return response.json(todo)
+       return response.status(200).send(todo)
     },
 
     async delete(request, response) {
@@ -44,7 +47,7 @@ module.exports = {
     },
 
     async modify(request, response) {
-            let updateObject = request.body;
+            let updateObject = (request.body);
             let { _id } = request.params;
             await Todo.updateOne({ _id }, {$set: updateObject}, (err) => {
               if(err) return response.status(404).send(err);  
