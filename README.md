@@ -16,7 +16,7 @@ uma lista de tarefas.
 ### Windows e Mac
 O docker pode ser baixado diretamente no [site oficial](https://www.docker.com/get-started).
 ### Distribuições Linux
-É necessário fazer a instalação do Docker e do Docker Compose por serem pacotes separados.
+É necessário fazer a instalação do Docker e do Docker Compose por serem pacotes separados.  
 O tutorial para instalação pode ser encontrado na documentação oficial.
 * [Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 * [Docker Compose](https://docs.docker.com/compose/install/)
@@ -30,23 +30,37 @@ Agora para subir o container vamos rodar o comando
 Pronto o ambiente vai estar disponível na porta 3000 por padrão ou na porta setada no .env
 # Como testar?
 
-* Listagem de tarefas - GET: http://localhost:3000/todos/
+#### Listagem de tarefas - GET: http://localhost:3000/todos/
 
- Em caso de sucesso retorna todas tarefas já cadastradas no banco de dados, cada tarefa no formato JSON, contendo descrição, se foi concluida, a data de criação e a data de atualização.
+ Em caso de sucesso retorna todas tarefas já cadastradas no banco de dados, cada tarefa no formato JSON, contendo descrição, se foi concluida, a data de criação e a data de atualização.  
+ Caso seja passado a query "page" e o número da página, ele trará uma páginação de 5 em 5 tarefas.
+ > http://localhost:3000/todos/?page=1
 
-* Adicionar tarefas - POST: http://localhost:3000/todos/
+#### Adicionar tarefas - POST: http://localhost:3000/todos/
 
- Adiciona uma tarefa ao banco de dados, sendo necessário inserir apenas o description. O Id é gerado automaticamente, o completed é adicionado por padrão false, createdAt e updatedAt são adicionado automaticamente pelo banco de dados.
+ Adiciona uma tarefa ao banco de dados, sendo necessário inserir apenas o description. O Id é gerado automaticamente, o completed é adicionado por padrão false, createdAt e updatedAt são adicionado automaticamente pelo banco de dados.  
+ Em caso de sucesso retorna um status 201 - Created, com o json da nova tarefa criada.
+   > {  
+ > "_id": "5e7f2aa938648a06ab0235c2",  
+ > "description": "PAGINA 4",  
+ > "completed": false,  
+ > "createdAt": "2020-03-28T10:44:57.133Z",  
+ > "updatedAt": "2020-03-28T10:44:57.133Z",  
+ > "__v": 0  
+> }  
 
-* Deletar uma tarefa por Id - DELETE: http://localhost:3000/todos/_id
 
- Remove a tarefa utilizando o Id que foi gerado automaticamente, utilizando o método DELETE.
+#### Deletar uma tarefa por Id - DELETE: http://localhost:3000/todos/_id
 
-* Altera um item de uma tarefa por id - PATCH: http://localhost:3000/todos/_id 
+ Remove a tarefa utilizando a variável _id que foi gerado automaticamente, utilizando o método DELETE.  
+ Em caso de sucesso retorna um 204 - No content com corpo vazio.
 
- Altera na tarefa o campo enviado pelo corpo da requisição, utilizando o método PATCH.
+#### Altera um item de uma tarefa por id - PATCH: http://localhost:3000/todos/_id 
 
-* Altera a tarefa por completo através do id- PUT: http://localhost:3000/todos/_id 
+ Altera na tarefa especificada pela variável _id o campo enviado pelo corpo da requisição, utilizando o método PATCH.  
+ Em caso de sucesso retorna um 204 - No content com corpo vazio.
 
- Altera o recurso completo da tarefa, utilizando o método PUT.
+#### Altera a tarefa por completo através do id- PUT: http://localhost:3000/todos/_id 
 
+ Altera o recurso completo da tarefa especificada pela variável _id, utilizando o método PUT.  a
+ Em caso de sucesso retorna um 204 - No content com corpo vazio.   
