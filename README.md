@@ -21,6 +21,9 @@ O tutorial para instalação pode ser encontrado na documentação oficial.
 * [Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 * [Docker Compose](https://docs.docker.com/compose/install/)
 ## Como executar?
+Clone esse repositório
+> git clone https://github.com/andlipe/todos-api.git
+
 Precisamos copiar o arquivo de váriaveis de ambiente com o comando
 > cp .env.example .env
 
@@ -49,18 +52,57 @@ Pronto o ambiente vai estar disponível na porta 3000 por padrão ou na porta se
  > "__v": 0  
 > }  
 
+Em caso de erro retornará um status 400 informando qual erro gerado.  
+> {
+>   "statusCode": 400,  
+>   "error": "Bad Request",  
+>   "message": "\"description\" length must be at least 3 characters long",  
+>   "validation": {  
+>     "source": "body",  
+>     "keys": [  
+>       "description"  
+>     ]  
+>   }  
+> }  
 
 #### Deletar uma tarefa por Id - DELETE: http://localhost:3000/todos/_id
 
  Remove a tarefa utilizando a variável _id que foi gerado automaticamente, utilizando o método DELETE.  
- Em caso de sucesso retorna um 204 - No content com corpo vazio.
+ Em caso de sucesso retorna um 204 - No content com corpo vazio.  
+ Em caso de não encontrar o id retornará um status 404.
 
 #### Altera um item de uma tarefa por id - PATCH: http://localhost:3000/todos/_id 
 
  Altera na tarefa especificada pela variável _id o campo enviado pelo corpo da requisição, utilizando o método PATCH.  
- Em caso de sucesso retorna um 204 - No content com corpo vazio.
+ Em caso de sucesso retorna um 204 - No content com corpo vazio.  
+ Em caso de não encontrar o id retornará um status 404.  
+ Se for enviada alguma informação em formato inválido retornará um status 400 informando qual foi o erro.
+> {  
+>  "statusCode": 400,  
+>  "error": "Bad Request",  
+>  "message": "\"description\" must be a string",  
+>  "validation": {  
+>    "source": "body",  
+>    "keys": [  
+>      "description"  
+>    ]  
+>  }
+> }
 
 #### Altera a tarefa por completo através do id- PUT: http://localhost:3000/todos/_id 
 
  Altera o recurso completo da tarefa especificada pela variável _id, utilizando o método PUT.  a
  Em caso de sucesso retorna um 204 - No content com corpo vazio.   
+ Em caso de não encontrar o id retornará um status 404.
+ Se não for enviado algum campo ou enviado em formato errado, retornará status 400 informando qual foi o erro.  
+> {    
+>  "statusCode": 400,  
+>  "error": "Bad Request",  
+>  "message": "\"completed\" is required",  
+>  "validation": {  
+>    "source": "body",  
+>    "keys": [  
+>      "completed"  
+>    ]  
+>  }  
+>}  
