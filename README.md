@@ -30,16 +30,16 @@ Precisamos copiar o arquivo de váriaveis de ambiente com o comando
 Agora para subir o container vamos rodar o comando
 > docker-compose up --build -d
 
-Pronto o ambiente vai estar disponível na porta 3000 por padrão ou na porta setada no .env
+Pronto o ambiente vai estar disponível na porta 3030 por padrão ou na porta setada no .env
 # Como testar?
 
-#### Listagem de tarefas - GET: http://localhost:3000/todos/
+#### Listagem de tarefas - GET: http://localhost:3030/todos/
 
  Em caso de sucesso retorna todas tarefas já cadastradas no banco de dados, cada tarefa no formato JSON, contendo descrição, se foi concluida, a data de criação e a data de atualização.  
  Caso seja passado a query "page" e o número da página, ele trará uma páginação de 5 em 5 tarefas.
- > http://localhost:3000/todos/?page=1
+ > http://localhost:3030/todos/?page=1
 
-#### Adicionar tarefas - POST: http://localhost:3000/todos/
+#### Adicionar tarefas - POST: http://localhost:3030/todos/
 
  Adiciona uma tarefa ao banco de dados, sendo necessário inserir apenas o description. O Id é gerado automaticamente, o completed é adicionado por padrão false, createdAt e updatedAt são adicionado automaticamente pelo banco de dados.  
  Em caso de sucesso retorna um status 201 - Created, com o json da nova tarefa criada.
@@ -65,13 +65,13 @@ Em caso de erro retornará um status 400 informando qual erro gerado.
 >   }  
 > }  
 
-#### Deletar uma tarefa por Id - DELETE: http://localhost:3000/todos/_id
+#### Deletar uma tarefa por Id - DELETE: http://localhost:3030/todos/_id
 
  Remove a tarefa utilizando a variável _id que foi gerado automaticamente, utilizando o método DELETE.  
  Em caso de sucesso retorna um 204 - No content com corpo vazio.  
  Em caso de não encontrar o id retornará um status 404.
 
-#### Altera um item de uma tarefa por id - PATCH: http://localhost:3000/todos/_id 
+#### Altera um item de uma tarefa por id - PATCH: http://localhost:3030/todos/_id 
 
  Altera na tarefa especificada pela variável _id o campo enviado pelo corpo da requisição, utilizando o método PATCH.  
  Em caso de sucesso retorna um 204 - No content com corpo vazio.  
@@ -89,7 +89,7 @@ Em caso de erro retornará um status 400 informando qual erro gerado.
 >  }
 > }
 
-#### Altera a tarefa por completo através do id- PUT: http://localhost:3000/todos/_id 
+#### Altera a tarefa por completo através do id- PUT: http://localhost:3030/todos/_id 
 
  Altera o recurso completo da tarefa especificada pela variável _id, utilizando o método PUT.  a
  Em caso de sucesso retorna um 204 - No content com corpo vazio.   
@@ -106,3 +106,7 @@ Em caso de erro retornará um status 400 informando qual erro gerado.
 >    ]  
 >  }  
 >}  
+
+#### Front End  
+Essa aplicação pode ser testado junta ao Front End encontrado nesse repositório:  
+[Todo Front](https://github.com/andlipe/todo-front)
